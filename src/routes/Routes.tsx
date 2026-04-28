@@ -1,7 +1,21 @@
 import { createBrowserRouter } from "react-router-dom";
 import NotFound from "../pages/NotFound";
 import Wrapper from "../layout/Wrapper";
-import Dashboard from "../pages/Dashboard";
+import FormOptimize from "../pages/formOptimizer/FormOptimize";
+import Stopwatch from "../pages/stopwatch/Stopwatch";
+import Login from "../pages/studentManagement/Login";
+import Signup from "../pages/studentManagement/Signup";
+import StudentManagementWrapper from "../layout/studentManagement/StudentManagementWrapper";
+import AdminWrapper from "../layout/studentManagement/admin/AdminWrapper";
+import StudentWrapper from "../layout/studentManagement/student/StudentWrapper";
+// import Dashboard from "../pages/studentManagement/admin/Dashboard";
+const Dashboard = lazy(
+  () => import("../pages/studentManagement/admin/Dashboard"),
+);
+import StudentAdd from "../pages/studentManagement/admin/StudentAdd";
+import StudentEdit from "../pages/studentManagement/admin/StudentEdit";
+import Profile from "../pages/studentManagement/student/Profile";
+import { lazy, Suspense } from "react";
 
 const Routes = createBrowserRouter([
   {
@@ -9,8 +23,60 @@ const Routes = createBrowserRouter([
     element: <Wrapper />,
     children: [
       {
-        path: "dashboard",
-        element: <Dashboard />,
+        // path: "formoptimizar",
+        path: "/",
+        element: <FormOptimize />,
+      },
+      {
+        path: "stopwatch",
+        element: <Stopwatch />,
+      },
+    ],
+  },
+  {
+    path: "/studentmanagement",
+    element: <StudentManagementWrapper />,
+    children: [
+      {
+        // index: true,
+        path: "signup",
+        element: <Signup />,
+      },
+      {
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "admin",
+        element: <AdminWrapper />,
+        children: [
+          {
+            path: "dashboard",
+            element: (
+              <Suspense fallback={<p className="text-red-500">Loading...</p>}>
+                <Dashboard />,
+              </Suspense>
+            ),
+          },
+          {
+            path: "add",
+            element: <StudentAdd />,
+          },
+          {
+            path: "edit",
+            element: <StudentEdit />,
+          },
+        ],
+      },
+      {
+        path: "student",
+        element: <StudentWrapper />,
+        children: [
+          {
+            index: true,
+            element: <Profile />,
+          },
+        ],
       },
     ],
   },

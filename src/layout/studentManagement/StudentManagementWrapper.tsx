@@ -1,13 +1,11 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "./Navbar";
 
-const Wrapper = () => {
+const StudentManagementWrapper = () => {
   return (
     <>
-      <Navbar />
       <Outlet />
     </>
   );
 };
 
-export default Wrapper;
+export default StudentManagementWrapper;
