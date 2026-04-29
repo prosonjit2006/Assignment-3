@@ -7,6 +7,7 @@ import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import { LogOut } from "lucide-react";
+import { forceLogout } from "../../../services/helper/global.helper";
 
 const AdminNavbar = () => {
   return (
@@ -56,8 +57,8 @@ const AdminNavbar = () => {
               </Tooltip>
             </Box>
 
-            <Tooltip title="LogOut">
-              <LogOut className="ml-2" />
+            <Tooltip onClick={forceLogout} title="LogOut">
+              <LogOut className="ml-2"  />
             </Tooltip>
             {/* <Button> */}
             {/* </Button> */}
