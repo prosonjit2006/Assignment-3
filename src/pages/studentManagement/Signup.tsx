@@ -11,7 +11,7 @@ import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [preview, setPreview] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -25,10 +25,10 @@ const Signup = () => {
   } = useForm({
     resolver: yupResolver(signupSchema),
     defaultValues: {
-      name: '',
-      email: '',
-      password: '',
-      confirmPassword: '',
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
     },
   });
 
@@ -40,21 +40,21 @@ const Signup = () => {
         name: data.name,
         email: data.email,
         password: data.password,
-       
       });
 
       console.log("userauth", userAuth);
 
       let imageUrl;
       if (data.image) {
-        console.log("comming image", data.image);
+        // console.log("comming image", data.image);
 
         const uploadImage = await bucket.createFile({
           bucketId: import.meta.env.VITE_BUCKET_ID,
           fileId: ID.unique(),
           file: data.image,
         });
-        console.log("upload img", uploadImage);
+        // console.log("upload img", uploadImage);
+
         const viewImage = bucket.getFileView({
           bucketId: import.meta.env.VITE_BUCKET_ID,
           fileId: uploadImage.$id,
@@ -80,47 +80,46 @@ const Signup = () => {
         toast.success("User Register Successfully!!");
         reset();
         setPreview(null);
-        Navigate("/studentmanagement/login");
+        navigate("/studentmanagement/login");
       }
-    } catch (error) {
+    } catch (error: any) {
       console.log("error", error);
+      // toast.error(error?.message);
+      toast.error(error?.message);
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="xs">
       <Box
         sx={{
-          height: "100vh",
+          minHeight: "100vh",
           display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
           alignItems: "center",
+          justifyContent: "center",
         }}
       >
         <Box
           sx={{
             width: "100%",
+            p: 4,
+            borderRadius: 3,
+            bgcolor: "#fff",
+            border: "1px solid #e5e7eb",
             boxShadow: "2px 2px 5px gray",
-            p: 6,
-            borderRadius: 7,
           }}
         >
-          <Typography variant="h4" sx={{ mb: 3 }}>
-            Signup
+          <Typography
+            variant="h5"
+            sx={{ mb: 3, fontWeight: 600, textAlign: "center" }}
+          >
+            Create account
           </Typography>
 
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                gap: 2,
-                width: "100%",
-              }}
-            >
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
               {signupFields.map((field) => (
                 <DynamyicInput
                   key={field.name}
@@ -130,46 +129,77 @@ const Signup = () => {
                 />
               ))}
 
-              {/* img preview */}
+              {/* Image Preview */}
               {preview && (
                 <Box
                   component="img"
                   src={preview}
-                  alt="img"
+                  alt="preview"
                   sx={{
-                    width: "150px",
-                    height: "150px",
+                    width: 80,
+                    height: 80,
+                    borderRadius: "50%",
                     objectFit: "cover",
-                    borderRadius: "7px",
+                    mx: "auto",
                   }}
                 />
               )}
 
-              {/* file upload */}
+              {/* Upload */}
               <Button
-                variant="contained"
+                variant="outlined"
+                size="small"
                 onClick={() => document.getElementById("fileInput")?.click()}
+                sx={{ textTransform: "none" }}
               >
-                Upload File
+                Upload profile image
                 <Box
-                  onChange={(e) => {
-                    const file = e.target.files?.[0];
-                    if (!file) return;
-                    setValue("image", file);
-
-                    const imgUrl = URL.createObjectURL(file);
-                    setPreview(imgUrl);
-                  }}
                   component="input"
                   type="file"
                   id="fileInput"
                   hidden
-                ></Box>
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (!file) return;
+
+                    setValue("image", file);
+                    setPreview(URL.createObjectURL(file));
+                  }}
+                />
               </Button>
 
-              <Button type="submit" variant="contained" disabled={isLoading}>
-                {isLoading ? "Loading..." : "Signup"}
+              {/* Submit */}
+              <Button
+                type="submit"
+                variant="contained"
+                fullWidth
+                disabled={isLoading}
+                sx={{
+                  mt: 1,
+                  py: 1.2,
+                  fontWeight: 600,
+                  textTransform: "none",
+                  borderRadius: 2,
+                }}
+              >
+                {isLoading ? "Creating..." : "Create account"}
               </Button>
+
+              <Typography variant="body2" sx={{ textAlign: "center", mt: 1 }}>
+                Already have an account?{" "}
+                <Box
+                  component="span"
+                  onClick={() => navigate("/studentmanagement/login")}
+                  sx={{
+                    color: "#2563eb",
+                    cursor: "pointer",
+                    fontWeight: 500,
+                    "&:hover": { textDecoration: "underline" },
+                  }}
+                >
+                  Login
+                </Box>
+              </Typography>
             </Box>
           </form>
         </Box>

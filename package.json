@@ -17,7 +17,7 @@
     "appwrite": "^25.0.0",
     "axios": "^1.15.2",
     "js-cookie": "^3.0.5",
-    "lucide-react": "^1.11.0",
+    "lucide-react": "^1.14.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "react-hook-form": "^7.74.0",

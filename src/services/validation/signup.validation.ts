@@ -8,12 +8,12 @@ export const signupSchema = yup.object({
     .email("Enter a valid email"),
   password: yup
     .string()
-    .required("Password is required")
-    .min(6, "Minumum 6 digit is required"),
+    .required("Password is required"),
+    // .min(6, "Minumum 6 digit is required"),
   confirmPassword: yup
     .string()
     .required("Confirm Password is required")
     .oneOf([yup.ref("password")], "Passwords must match"),
  
-  image: yup.mixed().optional(),
+  image: yup.mixed<File>().optional(),
 });

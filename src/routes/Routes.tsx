@@ -16,6 +16,7 @@ import StudentAdd from "../pages/studentManagement/admin/StudentAdd";
 import StudentEdit from "../pages/studentManagement/admin/StudentEdit";
 import Profile from "../pages/studentManagement/student/Profile";
 import { lazy, Suspense } from "react";
+import StudentDashboard from "../pages/studentManagement/student/StudentDashboard";
 
 const Routes = createBrowserRouter([
   {
@@ -54,7 +55,7 @@ const Routes = createBrowserRouter([
             path: "dashboard",
             element: (
               <Suspense fallback={<p className="text-red-500">Loading...</p>}>
-                <Dashboard />,
+                <Dashboard />
               </Suspense>
             ),
           },
@@ -73,7 +74,12 @@ const Routes = createBrowserRouter([
         element: <StudentWrapper />,
         children: [
           {
-            index: true,
+            path: "dashboard",
+            element: <StudentDashboard />,
+          },
+          {
+            // index: true,
+            path: "profile",
             element: <Profile />,
           },
         ],
