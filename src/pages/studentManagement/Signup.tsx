@@ -60,9 +60,11 @@ const Signup = () => {
           fileId: uploadImage.$id,
         });
 
-        console.log("vew img", viewImage);
+        // console.log("vew img", viewImage);
         imageUrl = viewImage;
       }
+
+      // user row data
       const user = await tablesDB.createRow({
         databaseId: import.meta.env.VITE_APPWRITE_DATABASE_ID,
         tableId: "users",
@@ -75,15 +77,38 @@ const Signup = () => {
           image: imageUrl,
         },
       });
+
+      // student row data
+      const student = await tablesDB.createRow({
+        databaseId: import.meta.env.VITE_APPWRITE_DATABASE_ID,
+        tableId: "student",
+        rowId: ID.unique(),
+        data: {
+          name: data.name,
+          email: data.email,
+          password: data.password,
+          role: "student",
+          image: imageUrl,
+        },
+      });
+
       console.log("user rgister res", user);
-      if (user) {
-        toast.success("User Register Successfully!!");
+      console.log("Student data", student);
+
+      // if (user) {
+      //   toast.success("User Register Successfully!!");
+      //   reset();
+      //   setPreview(null);
+      //   navigate("/studentmanagement/login");
+      // }
+      if (student) {
+        toast.success("Student Register Successfully!!");
         reset();
         setPreview(null);
-        navigate("/studentmanagement/login");
+        // navigate("/studentmanagement/login");
       }
     } catch (error: any) {
-      console.log("error", error);
+      // console.log("error", error);
       // toast.error(error?.message);
       toast.error(error?.message);
     } finally {

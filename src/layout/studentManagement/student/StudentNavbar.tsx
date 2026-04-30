@@ -8,6 +8,9 @@ import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import { LogOut } from "lucide-react";
 import { forceLogout } from "../../../services/helper/global.helper";
+import Cookies from "js-cookie";
+
+const user = JSON.parse(Cookies.get("user") as string);
 
 const StudentNavbar = () => {
   return (
@@ -50,9 +53,9 @@ const StudentNavbar = () => {
             }}
           >
             <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="User">
+              <Tooltip title="Profile">
                 <IconButton sx={{ p: 0 }}>
-                  <Avatar alt="Student" src="/static/images/avatar/2.jpg" />
+                  <Avatar alt={user.name} src={user.image} />
                 </IconButton>
               </Tooltip>
             </Box>
