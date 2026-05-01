@@ -105,7 +105,7 @@ const Signup = () => {
         toast.success("Student Register Successfully!!");
         reset();
         setPreview(null);
-        // navigate("/studentmanagement/login");
+        navigate("/studentmanagement/login");
       }
     } catch (error: any) {
       // console.log("error", error);

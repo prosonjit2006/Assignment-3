@@ -10,7 +10,19 @@ import { LogOut } from "lucide-react";
 import { forceLogout } from "../../../services/helper/global.helper";
 import Cookies from "js-cookie";
 
-const user = JSON.parse(Cookies.get("user") as string);
+const getUserFromCookie = () => {
+  try {
+    const cookie = Cookies.get("user");
+    if (!cookie) return null;
+
+    return JSON.parse(cookie);
+  } catch (error) {
+    console.error("Invalid user cookie", error);
+    return null;
+  }
+};
+
+const user = getUserFromCookie();
 
 const StudentNavbar = () => {
   return (
@@ -55,7 +67,11 @@ const StudentNavbar = () => {
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Profile">
                 <IconButton sx={{ p: 0 }}>
-                  <Avatar alt={user.name} src={user.image} />
+                  {user ? (
+                    <Avatar alt={user.name} src={user.image} />
+                  ) : (
+                    <Avatar alt="Student" src="/avatar.png" />
+                  )}
                 </IconButton>
               </Tooltip>
             </Box>

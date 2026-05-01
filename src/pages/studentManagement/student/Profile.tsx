@@ -15,18 +15,7 @@ import { tablesDB } from "../../../lib/Appwrite.config";
 import { Query } from "appwrite";
 import Cookies from "js-cookie";
 import { profileInputFields } from "../../../services/json/profileInput.json";
-
-interface ProfileType {
-  $id: string;
-  name: string;
-  email: string;
-  role: string;
-  image: string;
-  phone: string;
-  address: string;
-  course: string;
-  $createdAt: string;
-}
+import type { ProfileType } from "../../../typescript/interface/student.interface";
 
 const Profile = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -155,7 +144,9 @@ const Profile = () => {
             />
 
             <Box>
-              <Typography variant="h6">{profileDetails?.name}</Typography>
+              <Typography variant="h6" sx={{ textTransform: "capitalize" }}>
+                {profileDetails?.name}
+              </Typography>
 
               <Typography variant="body2" color="text.secondary">
                 {profileDetails?.email}
@@ -170,6 +161,7 @@ const Profile = () => {
                   py: 0.3,
                   borderRadius: 1,
                   bgcolor: "#f5f5f5",
+                  textTransform: "capitalize",
                 }}
               >
                 {profileDetails?.role}
@@ -205,14 +197,18 @@ const Profile = () => {
               <Typography variant="caption" color="text.secondary">
                 Course
               </Typography>
-              <Typography>{profileDetails?.course || "-"}</Typography>
+              <Typography sx={{ textTransform: "uppercase" }}>
+                {profileDetails?.course || "-"}
+              </Typography>
             </Box>
 
             <Box>
               <Typography variant="caption" color="text.secondary">
                 Address
               </Typography>
-              <Typography>{profileDetails?.address || "-"}</Typography>
+              <Typography sx={{ textTransform: "capitalize" }}>
+                {profileDetails?.address || "-"}
+              </Typography>
             </Box>
 
             <Box>
