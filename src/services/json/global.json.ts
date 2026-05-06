@@ -10,6 +10,6 @@ export const navbarItems = [
   },
   {
     name: "Student M. CRUD",
-    path: "/studentmanagement",
+    path: "/studentmanagement/login",
   },
 ];

@@ -5,9 +5,11 @@ import Container from "@mui/material/Container";
 
 import { Box, Button } from "@mui/material";
 import { navbarItems } from "../services/json/global.json";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
   return (
     <AppBar position="static">
       <Container
@@ -98,7 +100,7 @@ const Navbar = () => {
                     transform: "scale(1.08)",
                   },
 
-                  //  underline animation (this is the real upgrade)
+                  //  underline animation
                   "&::after": {
                     content: '""',
                     position: "absolute",
@@ -125,7 +127,12 @@ const Navbar = () => {
             ))}
           </Box>
 
-          <Button variant="contained">Student CRUD</Button>
+          <Button
+            onClick={() => navigate("/studentmanagement/login")}
+            variant="contained"
+          >
+            Student CRUD
+          </Button>
         </Toolbar>
       </Container>
     </AppBar>

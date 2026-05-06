@@ -1,6 +1,7 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import { studentSidebarItems } from "../../../services/json/student.json";
+import Logo from "../../../assets/image/logo-student.png";
 
 const StudentSidebar = () => {
   return (
@@ -14,7 +15,7 @@ const StudentSidebar = () => {
         background: "linear-gradient(150deg, #1C4D8D 20%, #1D546C 70% )",
       }}
     >
-      <Box
+      {/* <Box
         sx={{
           // border: '1px solid black',
           textAlign: "center",
@@ -22,6 +23,24 @@ const StudentSidebar = () => {
         }}
       >
         <Typography variant="h5">Student Panel</Typography>
+      </Box> */}
+
+      <Box
+        component="figure"
+        sx={{
+          width: "200px",
+          height: "120px",
+          objectFit: "cover",
+          p: 1,
+          pt: 3,
+        }}
+      >
+        <Box
+          component="img"
+          src={Logo}
+          alt="admin logo"
+          // sx={{ width: "100%", height: "100%", }}
+        />
       </Box>
 
       {/* navlinks */}

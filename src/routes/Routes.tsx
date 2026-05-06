@@ -12,11 +12,12 @@ import StudentWrapper from "../layout/studentManagement/student/StudentWrapper";
 const Dashboard = lazy(
   () => import("../pages/studentManagement/admin/Dashboard"),
 );
-import StudentAdd from "../pages/studentManagement/admin/StudentAdd";
-import StudentEdit from "../pages/studentManagement/admin/StudentEdit";
+// import StudentAdd from "../pages/studentManagement/admin/StudentAdd";
+// import StudentEdit from "../pages/studentManagement/admin/StudentEdit";
 import Profile from "../pages/studentManagement/student/Profile";
 import { lazy, Suspense } from "react";
 import StudentDashboard from "../pages/studentManagement/student/StudentDashboard";
+import StudentList from "../pages/studentManagement/admin/StudentList";
 
 const Routes = createBrowserRouter([
   {
@@ -60,13 +61,17 @@ const Routes = createBrowserRouter([
             ),
           },
           {
-            path: "add",
-            element: <StudentAdd />,
+            path: "studentlist",
+            element: <StudentList />,
           },
-          {
-            path: "edit",
-            element: <StudentEdit />,
-          },
+          // {
+          //   path: "add",
+          //   element: <StudentAdd />,
+          // },
+          // {
+          //   path: "edit",
+          //   element: <StudentEdit />,
+          // },
         ],
       },
       {

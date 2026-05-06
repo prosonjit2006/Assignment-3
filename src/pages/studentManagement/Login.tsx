@@ -135,7 +135,7 @@ const Signup = () => {
 
               {/* Footer */}
               <Typography variant="body2" sx={{ textAlign: "center", mt: 1 }}>
-                Don’t have an account?{" "}
+                Don't have an account?{" "}
                 <Box
                   component="span"
                   onClick={() => navigate("/studentmanagement/signup")}

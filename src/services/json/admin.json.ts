@@ -11,12 +11,16 @@ export const adminSidebarItems = [
     name: "Dashboard",
     path: "/studentmanagement/admin/dashboard",
   },
+  // {
+  //   name: "Student Add",
+  //   path: "/studentmanagement/admin/add",
+  // },
+  // {
+  //   name: "Student Edit",
+  //   path: "/studentmanagement/admin/edit",
+  // },
   {
-    name: "Student Add",
-    path: "/studentmanagement/admin/add",
-  },
-  {
-    name: "Student Edit",
-    path: "/studentmanagement/admin/edit",
+    name: "Student List",
+    path: "/studentmanagement/admin/studentlist",
   },
 ];

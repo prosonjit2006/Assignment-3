@@ -1,20 +1,24 @@
 import { NavLink } from "react-router-dom";
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import { adminSidebarItems } from "../../../services/json/admin.json";
+import Logo from "../../../assets/image/logo-admin.png";
 
 const AdminSidebar = () => {
   return (
     <Container
       // disableGutters
+      
       maxWidth={false}
       sx={{
         color: "#fff",
         width: "100%",
         height: "100vh",
         background: "linear-gradient(150deg, #1C4D8D 20%, #1D546C 70% )",
+        position: 'static',
+        top: '0'
       }}
     >
-      <Box
+      {/* <Box
         sx={{
           // border: '1px solid black',
           textAlign: "center",
@@ -22,6 +26,23 @@ const AdminSidebar = () => {
         }}
       >
         <Typography variant="h5">Admin Panel</Typography>
+      </Box> */}
+      <Box
+        component="figure"
+        sx={{
+          width: "200px",
+          height: "120px",
+          objectFit: "cover",
+          p: 1,
+          pt: 3,
+        }}
+      >
+        <Box
+          component="img"
+          src={Logo}
+          alt="admin logo"
+          // sx={{ width: "100%", height: "100%", }}
+        />
       </Box>
 
       {/* navlinks */}
