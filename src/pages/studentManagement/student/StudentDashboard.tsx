@@ -7,10 +7,12 @@ import { tablesDB } from "../../../lib/Appwrite.config";
 import { Query } from "appwrite";
 import type { ProfileType } from "../../../typescript/interface/student.interface";
 
-const user = JSON.parse(Cookies.get("user") as string);
 // looking into this matter
 
 const StudentDashboard = () => {
+  
+  const user = JSON.parse(Cookies.get("user") as string);
+
   // const [user, setUser] = useState<UserType | null>(null);
   // useEffect(() => {
   //   const getUserFromCookie = () => {
