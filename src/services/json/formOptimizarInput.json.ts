@@ -49,13 +49,13 @@ export const formOptimizarInput = [
   },
   {
     name: "discount",
-    label: "Discount",
+    label: "Discount %",
     placeholdar: "Enter discount",
     type: "number",
   },
   {
     name: "tax",
-    label: "Tax",
+    label: "Tax %",
     placeholdar: "Enter tax",
     type: "number",
   },

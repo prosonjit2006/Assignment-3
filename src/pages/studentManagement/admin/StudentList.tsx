@@ -19,7 +19,7 @@ import type { ProfileType } from "../../../typescript/interface/student.interfac
 
 const StudentList = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [studentList, setStudentList] = useState<ProfileType[] >([]);
+  const [studentList, setStudentList] = useState<ProfileType[]>([]);
   const [formData, setFormData] = useState<Partial<ProfileType>>({});
   const [editId, setEditId] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
@@ -36,7 +36,7 @@ const StudentList = () => {
 
         console.log("student list", res.rows);
 
-        setStudentList(res.rows);
+        setStudentList(res.rows as unknown as ProfileType[]);
       } catch (error: any) {
         toast.error(error?.message);
       } finally {
@@ -83,11 +83,13 @@ const StudentList = () => {
         prev?.map((item) =>
           item?.$id === editId ? { ...item, ...formData } : item,
         ),
-      ) || null;
+      );
 
       handleClose();
     } catch (error) {
-      toast.error(error?.message);
+      const msg =
+        error instanceof Error ? error.message : "Something went wrong";
+      toast.error(msg);
     }
   };
 
@@ -120,7 +122,7 @@ const StudentList = () => {
     }
   };
 
-  // handle create 
+  // handle create
   const handleCreate = async () => {
     try {
       const res = await tablesDB.createRow({
@@ -142,7 +144,7 @@ const StudentList = () => {
       toast.success("Student Added Successfully");
 
       // update UI instantly
-      setStudentList((prev) => [...prev, res]);
+      setStudentList((prev) => [...prev, res as unknown as ProfileType]);
 
       handleClose();
     } catch (error: any) {

@@ -21,9 +21,11 @@ export const formOptimizarSchema = yup.object({
   discount: yup
     .number()
     .typeError("Discount must be a number")
+    .max(25)
     .required("Discount is required"),
   tax: yup
     .number()
     .typeError("Tax must be a number")
+    .max(18)
     .required("Tax is required"),
 });
