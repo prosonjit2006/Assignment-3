@@ -4,9 +4,9 @@ import { useForm, useWatch } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { formOptimizarSchema } from "../../services/validation/formOptimizar.validation";
 import DynamyicInput from "../../components/DynamyicInput";
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 
-export type FormOprimizarInput = {
+export type FormOptimizerInput = {
   name: string;
   email: string;
   password: string;
@@ -26,7 +26,7 @@ const FormOptimize = () => {
 
     control,
     formState: { errors },
-  } = useForm<FormOprimizarInput>({
+  } = useForm<FormOptimizerInput>({
     resolver: yupResolver(formOptimizarSchema),
     defaultValues: {
       name: "",
@@ -42,27 +42,17 @@ const FormOptimize = () => {
     },
   });
 
-  const onSubmit = (data: FormOprimizarInput) => {
+  const onSubmit = useCallback((data: FormOprimizarInput) => {
     console.log("response on submit", data);
-  };
-
-  // const values = useWatch({ control });
+  }, []);
 
   const fees = useWatch({ control, name: "fees" });
   const discount = useWatch({ control, name: "discount" });
   const tax = useWatch({ control, name: "tax" });
 
-  console.log("fees", fees);
-  console.log("discount", discount);
-  console.log("tax", tax);
-
-  // const totalFees = useMemo(() => {
-  //   const fees = Number(values?.fees || 0);
-  //   const discount = Number(values?.discount || 0);
-  //   const tax = Number(values?.tax || 0);
-
-  //   return fees - discount + tax;
-  // }, [values?.fees, values?.discount, values?.tax]);
+  console.log("fees", fees, "discount", discount, "tax", tax);
+  // console.log("discount", discount);
+  // console.log("tax", tax);
 
   const totalFees = useMemo(() => {
     return Number(fees || 0) - Number(discount || 0) + Number(tax || 0);
