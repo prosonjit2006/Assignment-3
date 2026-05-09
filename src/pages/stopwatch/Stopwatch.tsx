@@ -6,7 +6,7 @@ const Stopwatch = () => {
   const [time, setTime] = useState<number>(0);
   const [isRunning, setIsRunning] = useState<boolean>(false);
 
-  console.log("Component re-rendered! Current time:", time);
+  // console.log("Component re-rendered! Current time:", time);
 
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 

@@ -158,7 +158,7 @@ const Profile = () => {
                   mt: 0.5,
                   display: "inline-block",
                   px: 1,
-                  py: 0.3,
+                  py: 0.5,
                   borderRadius: 1,
                   bgcolor: "#f5f5f5",
                   textTransform: "capitalize",
@@ -166,6 +166,7 @@ const Profile = () => {
               >
                 {profileDetails?.role}
               </Typography>
+
             </Box>
           </Box>
 
@@ -248,6 +249,7 @@ const Profile = () => {
                 <TextField
                   key={field.name}
                   label={field.label}
+                  type={field.type}
                   fullWidth
                   size="small"
                   margin="normal"

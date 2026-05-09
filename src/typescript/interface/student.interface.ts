@@ -4,7 +4,7 @@ export interface ProfileType {
   email: string;
   role: string;
   image: string;
-  phone: string;
+  phone: number;
   address: string;
   course: string;
   $createdAt: string;
