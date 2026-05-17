@@ -166,7 +166,6 @@ const Profile = () => {
               >
                 {profileDetails?.role}
               </Typography>
-
             </Box>
           </Box>
 
